@@ -40,11 +40,11 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-3 text-sm text-warm-500">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-rose-400 shrink-0" />
-                <span>123 Purrington Lane<br />Catsville, CA 90210</span>
+                <span>Partizanska 31<br />Skopje, North Macedonia</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-rose-400 shrink-0" />
-                <span>(555) 123-PAWS</span>
+                <span>+389 2 555 0123</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-rose-400 shrink-0" />
