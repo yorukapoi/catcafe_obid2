@@ -55,9 +55,9 @@ export interface AdoptionApplication {
 }
 
 export const MENU_CATEGORIES: { value: MenuCategory; label: string; emoji: string }[] = [
-  { value: 'coffee', label: 'Pawsome Coffee', emoji: '☕' },
-  { value: 'pastry', label: 'Purrfect Pastries', emoji: '🥐' },
-  { value: 'tea', label: 'Meow-gical Teas', emoji: '🍵' },
+  { value: 'coffee', label: 'Coffee', emoji: '☕' },
+  { value: 'pastry', label: 'Desserts', emoji: '🥐' },
+  { value: 'tea', label: 'Other Drinks', emoji: '🍵' },
   { value: 'vegan', label: 'Vegan Options', emoji: '🌱' },
 ];
 

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Search, X, Coffee, Croissant, Leaf, CupSoda, Filter } from 'lucide-react';
+import { Search, Coffee, Croissant, Leaf, CupSoda } from 'lucide-react';
 import type { MenuItem, MenuCategory, DietaryTag } from '@/lib/types';
 import { MENU_CATEGORIES, DIETARY_TAGS } from '@/lib/types';
 import { supabase } from '@/lib/supabase';
@@ -17,9 +17,6 @@ const categoryIcons: Record<MenuCategory, typeof Coffee> = {
 export default function Menu() {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [activeCategory, setActiveCategory] = useState<MenuCategory | 'all'>('all');
-  const [activeTags, setActiveTags] = useState<DietaryTag[]>([]);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
   useEffect(() => {
@@ -34,38 +31,21 @@ export default function Menu() {
     })();
   }, []);
 
-  const filtered = useMemo(() => {
-    return items.filter((item) => {
-      if (activeCategory !== 'all' && item.category !== activeCategory) return false;
-      if (activeTags.length > 0 && !activeTags.every((tag) => item.dietary_tags.includes(tag))) return false;
-      if (search.trim()) {
-        const q = search.toLowerCase();
-        if (!item.name.toLowerCase().includes(q) && !item.description.toLowerCase().includes(q)) return false;
-      }
-      return true;
-    });
-  }, [items, activeCategory, activeTags, search]);
 
   const groupedByCategory = useMemo(() => {
     const map = new Map<MenuCategory, MenuItem[]>();
-    for (const item of filtered) {
+    for (const item of items) {
       if (!map.has(item.category)) map.set(item.category, []);
       map.get(item.category)!.push(item);
     }
     return map;
-  }, [filtered]);
-
-  const toggleTag = (tag: DietaryTag) => {
-    setActiveTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
-  };
+  }, [items]);
 
   const clearFilters = () => {
     setSearch('');
     setActiveCategory('all');
     setActiveTags([]);
   };
-
-  const hasFilters = search || activeCategory !== 'all' || activeTags.length > 0;
 
   return (
     <div className="pt-24 pb-12 min-h-screen bg-cream-50 bg-paw-pattern">
@@ -80,98 +60,10 @@ export default function Menu() {
           </p>
         </div>
 
-        {/* Search & Filters */}
-        <div className="bg-white rounded-3xl shadow-sm shadow-rose-100 p-4 sm:p-6 mb-8 border border-rose-100/40">
-          <div className="flex flex-col gap-4">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-warm-300" />
-              <input
-                type="text"
-                placeholder="Search for treats..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="input-pastel pl-12"
-              />
-              {search && (
-                <button
-                  onClick={() => setSearch('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-warm-300 hover:text-rose-400"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              )}
-            </div>
-
-            {/* Category pills */}
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => setActiveCategory('all')}
-                className={`badge px-4 py-2 transition-all ${
-                  activeCategory === 'all'
-                    ? 'bg-rose-400 text-white shadow-md shadow-rose-200'
-                    : 'bg-cream-100 text-warm-600 hover:bg-rose-100 hover:text-rose-500'
-                }`}
-              >
-                <Filter className="w-3 h-3 mr-1" />
-                All Items
-              </button>
-              {MENU_CATEGORIES.map((cat) => {
-                const Icon = categoryIcons[cat.value];
-                const isActive = activeCategory === cat.value;
-                return (
-                  <button
-                    key={cat.value}
-                    onClick={() => setActiveCategory(cat.value)}
-                    className={`badge px-4 py-2 transition-all ${
-                      isActive
-                        ? 'bg-rose-400 text-white shadow-md shadow-rose-200'
-                        : 'bg-cream-100 text-warm-600 hover:bg-rose-100 hover:text-rose-500'
-                    }`}
-                  >
-                    <Icon className="w-3 h-3 mr-1" />
-                    {cat.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Dietary tags */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-bold text-warm-400 uppercase tracking-wide mr-1">Dietary:</span>
-              {DIETARY_TAGS.map((tag) => {
-                const isActive = activeTags.includes(tag);
-                return (
-                  <button
-                    key={tag}
-                    onClick={() => toggleTag(tag)}
-                    className={`badge px-3 py-1.5 transition-all border ${
-                      isActive
-                        ? 'bg-mint-400 text-white border-mint-500 shadow-sm'
-                        : 'bg-white text-warm-500 border-rose-100 hover:border-mint-300 hover:text-mint-600'
-                    }`}
-                  >
-                    {isActive && <span className="mr-1">✓</span>}
-                    {tag}
-                  </button>
-                );
-              })}
-              {hasFilters && (
-                <button
-                  onClick={clearFilters}
-                  className="badge px-3 py-1.5 bg-rose-50 text-rose-500 hover:bg-rose-100 transition-colors ml-auto"
-                >
-                  <X className="w-3 h-3 mr-1" />
-                  Clear
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-
         {/* Results */}
         {loading ? (
           <LoadingSpinner label="Fetching treats..." />
-        ) : filtered.length === 0 ? (
+        ) : items.length === 0 ? (
           <div className="text-center py-20">
             <div className="w-20 h-20 mx-auto rounded-full bg-rose-100 flex items-center justify-center mb-4">
               <Search className="w-10 h-10 text-rose-300" />
@@ -212,7 +104,7 @@ export default function Menu() {
                             loading="lazy"
                           />
                           <div className="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-full px-3 py-1.5 shadow-sm">
-                            <span className="font-bold text-rose-500">${item.price.toFixed(2)}</span>
+                            <span className="font-bold text-rose-500">{item.price} ден.</span>
                           </div>
                         </div>
                         <div className="p-5">
@@ -244,7 +136,7 @@ export default function Menu() {
             <div className="p-6 sm:p-8">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <h2 className="font-display font-bold text-2xl sm:text-3xl text-warm-700">{selectedItem.name}</h2>
-                <span className="font-bold text-rose-500 text-2xl whitespace-nowrap">${selectedItem.price.toFixed(2)}</span>
+                <span className="font-bold text-rose-500 text-2xl whitespace-nowrap">{selectedItem.price} ден.</span>
               </div>
               <p className="text-warm-500 leading-relaxed mb-6">{selectedItem.description}</p>
               <div className="flex flex-wrap gap-2 mb-6">
