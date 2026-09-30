@@ -44,7 +44,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-rose-400 shrink-0" />
-                <span>+389 2 555 0123</span>
+                <span>+389 2 3108 555</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-rose-400 shrink-0" />

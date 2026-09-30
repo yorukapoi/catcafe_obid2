@@ -50,7 +50,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-warm-700 mb-1">Call Us</h3>
-                <p className="text-warm-500 text-sm">+389 2 555 0123</p>
+                <p className="text-warm-500 text-sm">+389 2 3108 555</p>
               </div>
             </div>
             <div className="card-pastel p-6 flex items-start gap-4">

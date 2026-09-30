@@ -258,7 +258,7 @@ export default function Adopt({ preselectedCatId, preselectedCatName, onNavigate
                   value={form.applicant_name}
                   onChange={(e) => update('applicant_name', e.target.value)}
                   className="input-pastel"
-                  placeholder="Jane Doe"
+                  placeholder="Nikola Nikolovski"
                 />
                 {errors.applicant_name && <p className="text-rose-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{errors.applicant_name}</p>}
               </div>
@@ -270,7 +270,7 @@ export default function Adopt({ preselectedCatId, preselectedCatName, onNavigate
                     value={form.email}
                     onChange={(e) => update('email', e.target.value)}
                     className="input-pastel"
-                    placeholder="jane@example.com"
+                    placeholder="nikola@example.com"
                   />
                   {errors.email && <p className="text-rose-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{errors.email}</p>}
                 </div>
@@ -281,7 +281,7 @@ export default function Adopt({ preselectedCatId, preselectedCatName, onNavigate
                     value={form.phone}
                     onChange={(e) => update('phone', e.target.value)}
                     className="input-pastel"
-                    placeholder="(555) 123-4567"
+                    placeholder="+389 75 123"
                   />
                   {errors.phone && <p className="text-rose-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{errors.phone}</p>}
                 </div>
@@ -293,7 +293,7 @@ export default function Adopt({ preselectedCatId, preselectedCatName, onNavigate
                   onChange={(e) => update('address', e.target.value)}
                   className="input-pastel resize-none"
                   rows={2}
-                  placeholder="123 Purrington Lane, Catsville, CA 90210"
+                  placeholder="Partizanska 31, Skopje, North Macedonia"
                 />
                 {errors.address && <p className="text-rose-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{errors.address}</p>}
               </div>
