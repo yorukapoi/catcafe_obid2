@@ -41,7 +41,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-warm-700 mb-1">Visit Us</h3>
-                <p className="text-warm-500 text-sm">123 Purrington Lane<br />Catsville, CA 90210</p>
+                <p className="text-warm-500 text-sm">Partizanska 31<br />Skopje, North Macedonia</p>
               </div>
             </div>
             <div className="card-pastel p-6 flex items-start gap-4">
@@ -50,7 +50,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-warm-700 mb-1">Call Us</h3>
-                <p className="text-warm-500 text-sm">(555) 123-PAWS</p>
+                <p className="text-warm-500 text-sm">+389 2 555 0123</p>
               </div>
             </div>
             <div className="card-pastel p-6 flex items-start gap-4">
@@ -99,7 +99,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="input-pastel"
-                    placeholder="Jane Doe"
+                    placeholder="Nikola Nikolovski"
                   />
                 </div>
                 <div>
@@ -109,7 +109,7 @@ export default function Contact() {
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="input-pastel"
-                    placeholder="jane@example.com"
+                    placeholder="nikola@example.com"
                   />
                 </div>
                 <div>
