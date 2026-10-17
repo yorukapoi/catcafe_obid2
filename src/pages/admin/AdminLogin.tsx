@@ -3,6 +3,7 @@ import { Lock, Mail, AlertCircle, LogOut, Clock, XCircle, UserPlus } from 'lucid
 import { supabase } from '@/lib/supabase';
 import type { Session } from '@supabase/supabase-js';
 import type { StaffStatus } from '@/lib/types';
+import { useLanguage } from '@/lib/i18n';
 
 export interface StaffApprovalState {
   status: StaffStatus | 'loading' | 'no_profile';
@@ -57,6 +58,7 @@ if (!data) {
 }
 
 export default function AdminLogin({ onLoggedIn, session, onLogout, approvalState, onRefreshApproval }: AdminLoginProps) {
+  const { t } = useLanguage();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -73,7 +75,7 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
     if (approvalState.status === 'loading') {
       return (
         <div className="pt-24 pb-12 min-h-screen bg-cream-50 flex items-center justify-center">
-          <div className="text-warm-400 text-sm animate-pulse">Checking staff access...</div>
+          <div className="text-warm-400 text-sm animate-pulse">{t('Checking staff access...')}</div>
         </div>
       );
     }
@@ -86,17 +88,17 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
               <div className="w-16 h-16 mx-auto rounded-full bg-amber-100 flex items-center justify-center mb-4">
                 <Clock className="w-8 h-8 text-amber-500" />
               </div>
-              <h2 className="font-display font-bold text-2xl text-warm-700 mb-2">Awaiting Approval</h2>
+              <h2 className="font-display font-bold text-2xl text-warm-700 mb-2">{t('Awaiting Approval')}</h2>
               <p className="text-warm-500 text-sm mb-2">
-                Your staff account request has been received. An existing staff member needs to approve your access before you can use the dashboard.
+                {t('Your staff account request has been received. An existing staff member needs to approve your access before you can use the dashboard.' )}
               </p>
-              <p className="text-warm-400 text-xs mb-6">Signed in as {approvalState.email}</p>
+              <p className="text-warm-400 text-xs mb-6">{t('Signed in as')} {approvalState.email}</p>
               <div className="flex gap-3">
                 <button onClick={onRefreshApproval} className="btn-ghost flex-1 text-sm">
-                  Check Again
+                  {t('Check Again' )}
                 </button>
                 <button onClick={onLogout} className="btn-ghost flex-1 text-sm">
-                  <LogOut className="w-4 h-4" /> Sign Out
+                  <LogOut className="w-4 h-4" /> {t('Sign Out' )}
                 </button>
               </div>
             </div>
@@ -113,12 +115,12 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
               <div className="w-16 h-16 mx-auto rounded-full bg-rose-100 flex items-center justify-center mb-4">
                 <XCircle className="w-8 h-8 text-rose-500" />
               </div>
-              <h2 className="font-display font-bold text-2xl text-warm-700 mb-2">Access Not Approved</h2>
+              <h2 className="font-display font-bold text-2xl text-warm-700 mb-2">{t('Access Not Approved')}</h2>
               <p className="text-warm-500 text-sm mb-6">
-                Your request for staff access was not approved. Please contact a café manager if you believe this is an error.
+                {t('Your request for staff access was not approved. Please contact a café manager if you believe this is an error.' )}
               </p>
               <button onClick={onLogout} className="btn-ghost w-full text-sm">
-                <LogOut className="w-4 h-4" /> Sign Out
+                <LogOut className="w-4 h-4" /> {t('Sign Out' )}
               </button>
             </div>
           </div>
@@ -153,7 +155,7 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
         setMode('login');
       }
     } catch (err: any) {
-      setError(err.message || 'Authentication failed. Please try again.');
+      setError(err.message || t('Authentication failed. Please try again.'));
     } finally {
       setLoading(false);
     }
@@ -167,8 +169,8 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
             <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-rose-300 to-lavender-300 flex items-center justify-center mb-4">
               <Lock className="w-8 h-8 text-white" />
             </div>
-            <h1 className="font-display font-bold text-3xl text-warm-700 mb-1">Staff Portal</h1>
-            <p className="text-warm-500 text-sm">Sign in to manage café content and applications</p>
+            <h1 className="font-display font-bold text-3xl text-warm-700 mb-1">{t('Staff Portal')}</h1>
+            <p className="text-warm-500 text-sm">{t('Sign in to manage café content and applications')}</p>
           </div>
 
           <div className="bg-white rounded-4xl shadow-sm shadow-rose-100 border border-rose-100/40 p-6 sm:p-8">
@@ -180,7 +182,7 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
                   mode === 'login' ? 'bg-white text-rose-500 shadow-sm' : 'text-warm-400'
                 }`}
               >
-                Sign In
+                {t('Sign In' )}
               </button>
               <button
                 onClick={() => setMode('signup')}
@@ -188,28 +190,28 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
                   mode === 'signup' ? 'bg-white text-rose-500 shadow-sm' : 'text-warm-400'
                 }`}
               >
-                Request Access
+                {t('Request Access' )}
               </button>
             </div>
 
             {signupSuccess && (
               <div className="bg-mint-50 border border-mint-200 rounded-2xl p-3 flex items-start gap-2 mb-4">
                 <UserPlus className="w-4 h-4 text-mint-500 shrink-0 mt-0.5" />
-                <p className="text-sm text-mint-600">Account created! If you're the first staff member, you're already approved — just sign in to get started. Otherwise, your request is waiting for approval from existing staff.</p>
+                <p className="text-sm text-mint-600">{t("Account created! If you're the first staff member, you're already approved — just sign in to get started. Otherwise, your request is waiting for approval from existing staff.")}</p>
               </div>
             )}
 
             {mode === 'signup' && (
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-3 mb-4">
                 <p className="text-xs text-amber-600">
-                  New accounts start as <span className="font-semibold">pending</span> and need approval from existing staff. The very first staff member is auto-approved so the cafe isn't locked out.
+                  {t("New accounts start as pending and need approval from existing staff. The very first staff member is auto-approved so the cafe isn't locked out.")}
                 </p>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-warm-600 mb-1.5">Email</label>
+                <label className="block text-sm font-semibold text-warm-600 mb-1.5">{t('Email')}</label>
                 <div className="relative">
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-warm-300" />
                   <input
@@ -217,13 +219,13 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="input-pastel pl-11"
-                    placeholder="staff@whiskers.cafe"
+                    placeholder="staff@meto.cafe"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-warm-600 mb-1.5">Password</label>
+                <label className="block text-sm font-semibold text-warm-600 mb-1.5">{t('Password')}</label>
                 <div className="relative">
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-warm-300" />
                   <input
@@ -244,11 +246,11 @@ export default function AdminLogin({ onLoggedIn, session, onLogout, approvalStat
                 </div>
               )}
               <button type="submit" disabled={loading} className="btn-primary w-full">
-                {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Request Access'}
+                {loading ? t('Please wait...') : mode === 'login' ? t('Sign In') : t('Request Access')}
               </button>
             </form>
             <p className="text-xs text-warm-400 text-center mt-4">
-              {mode === 'login' ? 'New staff member? Request access above.' : 'Already have an account? Sign in above.'}
+              {mode === 'login' ? t('New staff member? Request access above.') : t('Already have an account? Sign in above.')}
             </p>
           </div>
         </div>

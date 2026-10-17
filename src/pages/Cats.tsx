@@ -60,12 +60,11 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="font-display font-bold text-4xl sm:text-5xl text-warm-700 mb-3">
-            {t('Our Furry Friends')}
+            {t('Our Dearest Residents')}
           </h1>
           <p className="text-warm-500 max-w-xl mx-auto">
-            Get to know our resident and adoptable cats. Each one has a unique story and is
-            waiting to steal your heart.
-          </p>
+  {t('Every cat here has a personality of their own and a story worth knowing. Take a look around and get to know them.')}
+</p>
         </div>
 
         {/* Search & Filter */}
@@ -75,7 +74,7 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-warm-300" />
               <input
                 type="text"
-                placeholder="Search by name, breed, or personality..."
+                placeholder={t('Search by name, breed, or personality...')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="input-pastel pl-12"
@@ -103,7 +102,7 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
                     statusFilter === s.value ? 'bg-rose-400 text-white shadow-md shadow-rose-200' : 'bg-cream-100 text-warm-600 hover:bg-rose-100'
                   }`}
                 >
-                  {s.label}
+                  {t(s.label)}
                 </button>
               ))}
             </div>
@@ -112,14 +111,14 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
 
         {/* Grid */}
         {loading ? (
-          <LoadingSpinner label="Rounding up the cats..." />
+          <LoadingSpinner label={t('Rounding up the cats...')} />
         ) : filtered.length === 0 ? (
           <div className="text-center py-20">
             <div className="w-20 h-20 mx-auto rounded-full bg-lavender-100 flex items-center justify-center mb-4">
               <CatIcon className="w-10 h-10 text-lavender-300" />
             </div>
             <p className="text-warm-500 font-semibold text-lg mb-2">{t('No cats found')}</p>
-            <p className="text-warm-400 text-sm">Try a different search or filter.</p>
+            <p className="text-warm-400 text-sm">{t('Try a different search or filter.')}</p>
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -140,7 +139,7 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
                       loading="lazy"
                     />
                     <div className="absolute top-3 left-3">
-                      {statusInfo && <StatusBadge label={statusInfo.label} color={statusInfo.color} />}
+                      {statusInfo && <StatusBadge label={t(statusInfo.label)} color={statusInfo.color} />}
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-warm-700/80 to-transparent p-4 pt-12">
                       <h3 className="font-display font-bold text-white text-xl">{localizedValue(language, cat.name, cat.name_mk)}</h3>
@@ -152,16 +151,16 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
                     <div className="flex items-center gap-2 mt-3 text-xs text-warm-400">
                       {cat.good_with_kids && (
                         <span className="flex items-center gap-1 text-mint-600">
-                          <Baby className="w-3 h-3" /> Kids
+                          <Baby className="w-3 h-3" /> {t('Kids')}
                         </span>
                       )}
                       {cat.good_with_pets && (
                         <span className="flex items-center gap-1 text-sky-600">
-                          <PawPrint className="w-3 h-3" /> Pets
+                          <PawPrint className="w-3 h-3" /> {t('Pets')}
                         </span>
                       )}
                       <span className="ml-auto text-rose-400 font-semibold group-hover:translate-x-1 transition-transform">
-                        View →
+                        {t('View')} →
                       </span>
                     </div>
                   </div>
@@ -187,7 +186,7 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
               <div className="absolute top-4 left-4">
                 {(() => {
                   const statusInfo = CAT_STATUSES.find((s) => s.value === selectedCat.status);
-                  return statusInfo ? <StatusBadge label={statusInfo.label} color={statusInfo.color} /> : null;
+                  return statusInfo ? <StatusBadge label={t(statusInfo.label)} color={statusInfo.color} /> : null;
                 })()}
               </div>
               {allImages.length > 1 && (
@@ -199,7 +198,7 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
                       className={`w-2.5 h-2.5 rounded-full transition-all ${
                         idx === activeImageIdx ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/80'
                       }`}
-                      aria-label={`Photo ${idx + 1}`}
+                      aria-label={`${t('Photo')} ${idx + 1}`}
                     />
                   ))}
                 </div>
@@ -224,9 +223,9 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
                     <Baby className={`w-5 h-5 ${selectedCat.good_with_kids ? 'text-mint-700' : 'text-rose-700'}`} />
                   </div>
                   <div>
-                    <p className="font-bold text-warm-700 text-sm">Good with kids</p>
+                    <p className="font-bold text-warm-700 text-sm">{t('Good with kids')}</p>
                     <p className={`text-xs ${selectedCat.good_with_kids ? 'text-mint-600' : 'text-rose-600'}`}>
-                      {selectedCat.good_with_kids ? 'Yes, loves children' : 'Prefers quiet homes'}
+                      {selectedCat.good_with_kids ? t('Yes, loves children') : t('Prefers quiet homes')}
                     </p>
                   </div>
                 </div>
@@ -235,9 +234,9 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
                     <PawPrint className={`w-5 h-5 ${selectedCat.good_with_pets ? 'text-sky-700' : 'text-rose-700'}`} />
                   </div>
                   <div>
-                    <p className="font-bold text-warm-700 text-sm">Good with pets</p>
+                    <p className="font-bold text-warm-700 text-sm">{t('Good with pets')}</p>
                     <p className={`text-xs ${selectedCat.good_with_pets ? 'text-sky-600' : 'text-rose-600'}`}>
-                      {selectedCat.good_with_pets ? 'Yes, loves other animals' : 'Solo cat preferred'}
+                      {selectedCat.good_with_pets ? t('Yes, loves other animals') : t('Solo cat preferred')}
                     </p>
                   </div>
                 </div>
@@ -247,12 +246,12 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
               {selectedCat.favorite_toys.length > 0 && (
                 <div className="mb-6">
                   <h4 className="font-display font-bold text-warm-700 text-sm mb-2 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-warm-400" /> Favorite Toys
+                    <Sparkles className="w-4 h-4 text-warm-400" /> {t('Favorite Toys')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedCat.favorite_toys.map((toy, i) => (
                       <span key={i} className="badge bg-lavender-100 text-lavender-700 px-3 py-1.5">
-                        {toy}
+                        {t(toy)}
                       </span>
                     ))}
                   </div>
@@ -263,7 +262,7 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
               {selectedCat.backstory && (
                 <div className="mb-6">
                   <h4 className="font-display font-bold text-warm-700 text-sm mb-2 flex items-center gap-2">
-                    <Heart className="w-4 h-4 text-rose-400" /> My Story
+                    <Heart className="w-4 h-4 text-rose-400" /> {t('My Story')}
                   </h4>
                   <p className="text-warm-500 text-sm leading-relaxed bg-cream-100 rounded-2xl p-4">
                     {localizedValue(language, selectedCat.backstory, selectedCat.backstory_mk)}
@@ -288,7 +287,7 @@ export default function Cats({ onNavigate, preselectedCatId }: CatsProps) {
                 <div className="bg-lavender-50 border border-lavender-200 rounded-2xl p-4 flex items-center gap-3">
                   <Check className="w-5 h-5 text-lavender-500" />
                   <p className="text-warm-600 text-sm">
-                    {selectedCat.name} is a permanent resident at our café. Come visit and say hello!
+                    {localizedValue(language, selectedCat.name, selectedCat.name_mk)} {t('is a permanent resident at our café. Come visit and say hello!')}
                   </p>
                 </div>
               )}
