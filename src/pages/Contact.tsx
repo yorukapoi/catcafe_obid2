@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, Check, AlertCircle } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n';
 
 export default function Contact() {
-  const { t } = useLanguage();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
@@ -43,7 +41,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-display font-bold text-warm-700 mb-1">Visit Us</h3>
-                <p className="text-warm-500 text-sm">123 Purrington Lane<br />Catsville, CA 90210</p>
+                <p className="text-warm-500 text-sm">Partizanska 31<br />Skopje, North Macedonia</p>
               </div>
             </div>
             <div className="card-pastel p-6 flex items-start gap-4">
@@ -51,8 +49,8 @@ export default function Contact() {
                 <Phone className="w-6 h-6 text-mint-500" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-warm-700 mb-1">{t('Call Us')}</h3>
-                <p className="text-warm-500 text-sm">(555) 123-PAWS</p>
+                <h3 className="font-display font-bold text-warm-700 mb-1">Call Us</h3>
+                <p className="text-warm-500 text-sm">+389 2 3108 555</p>
               </div>
             </div>
             <div className="card-pastel p-6 flex items-start gap-4">
@@ -60,7 +58,7 @@ export default function Contact() {
                 <Mail className="w-6 h-6 text-sky-500" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-warm-700 mb-1">{t('Email Us')}</h3>
+                <h3 className="font-display font-bold text-warm-700 mb-1">Email Us</h3>
                 <p className="text-warm-500 text-sm">hello@whiskers.cafe</p>
               </div>
             </div>
@@ -69,7 +67,7 @@ export default function Contact() {
                 <Clock className="w-6 h-6 text-lavender-500" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-warm-700 mb-1">{t('Opening Hours')}</h3>
+                <h3 className="font-display font-bold text-warm-700 mb-1">Opening Hours</h3>
                 <p className="text-warm-500 text-sm">
                   Mon–Fri: 8am – 7pm<br />
                   Sat–Sun: 9am – 8pm
@@ -85,15 +83,15 @@ export default function Contact() {
                 <div className="w-20 h-20 mx-auto rounded-full bg-mint-100 flex items-center justify-center mb-4 animate-bounceEar">
                   <Check className="w-10 h-10 text-mint-500" />
                 </div>
-                <h3 className="font-display font-bold text-2xl text-warm-700 mb-2">{t('Message Sent!')}</h3>
+                <h3 className="font-display font-bold text-2xl text-warm-700 mb-2">Message Sent!</h3>
                 <p className="text-warm-500 text-sm mb-6">Thank you for reaching out. We'll get back to you within 24 hours.</p>
                 <button onClick={() => { setSent(false); setForm({ name: '', email: '', message: '' }); }} className="btn-ghost">
-                  {t('Send Another Message')}
+                  Send Another Message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="font-display font-bold text-2xl text-warm-700 mb-2">{t('Send a Message')}</h3>
+                <h3 className="font-display font-bold text-2xl text-warm-700 mb-2">Send a Message</h3>
                 <div>
                   <label className="block text-sm font-semibold text-warm-600 mb-1.5">Your Name</label>
                   <input
@@ -101,7 +99,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="input-pastel"
-                    placeholder="Jane Doe"
+                    placeholder="Nikola Nikolovski"
                   />
                 </div>
                 <div>
@@ -111,7 +109,7 @@ export default function Contact() {
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="input-pastel"
-                    placeholder="jane@example.com"
+                    placeholder="nikola@example.com"
                   />
                 </div>
                 <div>
@@ -131,7 +129,7 @@ export default function Contact() {
                 )}
                 <button type="submit" className="btn-primary w-full">
                   <Send className="w-4 h-4" />
-                  {t('Send Message')}
+                  Send Message
                 </button>
               </form>
             )}

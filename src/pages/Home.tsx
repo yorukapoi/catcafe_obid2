@@ -101,8 +101,8 @@ export default function Home({ onNavigate }: HomeProps) {
                 <MapPin className="w-6 h-6 text-mint-500" />
               </div>
               <div>
-                <p className="font-bold text-warm-700 text-sm">123 Purrington Lane</p>
-                <p className="text-warm-400 text-xs">Catsville, CA 90210</p>
+                <p className="font-bold text-warm-700 text-sm">Partizanska 31</p>
+                <p className="text-warm-400 text-xs">Skopje, North Macedonia</p>
               </div>
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-end">

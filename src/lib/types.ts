@@ -1,17 +1,3 @@
-export type StaffStatus = 'pending' | 'approved' | 'rejected';
-
-export interface StaffProfile {
-  id: string;
-  user_id: string;
-  email: string;
-  status: StaffStatus;
-  approved_by: string | null;
-  approved_at: string | null;
-  created_at: string;
-  updated_at: string;
-  role: 'staff' | 'manager';
-}
-
 export type MenuCategory = 'coffee' | 'pastry' | 'tea' | 'vegan';
 export type DietaryTag = 'Gluten-Free' | 'Vegan' | 'Nut-Free' | 'Dairy-Free' | 'Vegetarian';
 export type CatStatus = 'available' | 'resident' | 'pending' | 'adopted';
@@ -21,8 +7,6 @@ export interface MenuItem {
   id: string;
   name: string;
   description: string;
-  name_mk: string;
-  description_mk: string;
   price: number;
   image_url: string;
   category: MenuCategory;
@@ -46,8 +30,6 @@ export interface Cat {
   good_with_kids: boolean;
   good_with_pets: boolean;
   backstory: string;
-  bio_mk: string;
-  backstory_mk: string;
   sort_order: number;
   created_at: string;
   updated_at: string;
@@ -73,9 +55,9 @@ export interface AdoptionApplication {
 }
 
 export const MENU_CATEGORIES: { value: MenuCategory; label: string; emoji: string }[] = [
-  { value: 'coffee', label: 'Pawsome Coffee', emoji: '☕' },
-  { value: 'pastry', label: 'Purrfect Pastries', emoji: '🥐' },
-  { value: 'tea', label: 'Meow-gical Teas', emoji: '🍵' },
+  { value: 'coffee', label: 'Coffee', emoji: '☕' },
+  { value: 'pastry', label: 'Desserts', emoji: '🥐' },
+  { value: 'tea', label: 'Other Drinks', emoji: '🍵' },
   { value: 'vegan', label: 'Vegan Options', emoji: '🌱' },
 ];
 

@@ -1,12 +1,10 @@
 import { Cat, Heart, Instagram, Facebook, Twitter, MapPin, Phone, Mail } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
-  const { t } = useLanguage();
   return (
     <footer className="mt-20 bg-gradient-to-b from-cream-100 to-rose-50 border-t border-rose-100">
       <div className="section-padding py-12">
@@ -38,15 +36,15 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-warm-700 mb-4">{t('Visit Us')}</h4>
+            <h4 className="font-display font-bold text-warm-700 mb-4">Visit Us</h4>
             <ul className="space-y-3 text-sm text-warm-500">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-rose-400 shrink-0" />
-                <span>123 Purrington Lane<br />Catsville, CA 90210</span>
+                <span>Partizanska 31<br />Skopje, North Macedonia</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-rose-400 shrink-0" />
-                <span>(555) 123-PAWS</span>
+                <span>+389 2 3108 555</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-rose-400 shrink-0" />
@@ -56,18 +54,18 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-warm-700 mb-4">{t('Hours & Links')}</h4>
+            <h4 className="font-display font-bold text-warm-700 mb-4">Hours & Links</h4>
             <ul className="space-y-2 text-sm text-warm-500">
               <li>Mon–Fri: 8am – 7pm</li>
               <li>Sat–Sun: 9am – 8pm</li>
               <li className="pt-2">
-                <button onClick={() => onNavigate('menu')} className="hover:text-rose-500 transition-colors">{t('Our Menu')}</button>
+                <button onClick={() => onNavigate('menu')} className="hover:text-rose-500 transition-colors">Our Menu</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('cats')} className="hover:text-rose-500 transition-colors">{t('Meet Our Cats')}</button>
+                <button onClick={() => onNavigate('cats')} className="hover:text-rose-500 transition-colors">Meet Our Cats</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('adopt')} className="hover:text-rose-500 transition-colors">{t('Adopt a Furry Friend')}</button>
+                <button onClick={() => onNavigate('adopt')} className="hover:text-rose-500 transition-colors">Adopt a Cat</button>
               </li>
             </ul>
           </div>

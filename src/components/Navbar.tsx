@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Cat, Coffee, Menu as MenuIcon, X, Heart, Home, Send, Settings } from 'lucide-react';
-import { useLanguage } from '@/lib/i18n';
-import { useCurrency } from '@/lib/currency';
 
 interface NavbarProps {
   currentPage: string;
@@ -19,8 +17,6 @@ const navLinks = [
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
-  const { currency, setCurrency } = useCurrency();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -64,7 +60,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 }`}
               >
                 <Icon className="w-4 h-4" />
-                {t(link.label)}
+                {link.label}
               </button>
             );
           })}
@@ -77,13 +73,8 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             }`}
           >
             <Settings className="w-4 h-4" />
-            {t('Staff')}
+            Staff
           </button>
-          <div className="flex items-center gap-1 ml-2 rounded-full bg-white/70 p-1">
-            <button onClick={() => setLanguage('en')} className={`px-2 py-1 rounded-full text-xs font-bold transition-colors ${language === 'en' ? 'bg-warm-500 text-white' : 'text-warm-500'}`}>EN</button>
-            <button onClick={() => setLanguage('mk')} className={`px-2 py-1 rounded-full text-xs font-bold transition-colors ${language === 'mk' ? 'bg-warm-500 text-white' : 'text-warm-500'}`}>MK</button>
-            <button onClick={() => setCurrency(currency === 'USD' ? 'MKD' : 'USD')} className="px-2 py-1 rounded-full text-xs font-bold text-warm-500">{currency}</button>
-          </div>
         </div>
 
         <button
@@ -110,7 +101,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   }`}
                 >
                   <Icon className="w-5 h-5" />
-                  {t(link.label)}
+                  {link.label}
                 </button>
               );
             })}
@@ -121,13 +112,8 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               }`}
             >
               <Settings className="w-5 h-5" />
-              {t('Staff Portal')}
+              Staff Portal
             </button>
-            <div className="flex items-center justify-center gap-2 pt-2">
-              <button onClick={() => setLanguage('en')} className={`px-3 py-1.5 rounded-full text-xs font-bold ${language === 'en' ? 'bg-warm-500 text-white' : 'bg-rose-100 text-warm-500'}`}>EN</button>
-              <button onClick={() => setLanguage('mk')} className={`px-3 py-1.5 rounded-full text-xs font-bold ${language === 'mk' ? 'bg-warm-500 text-white' : 'bg-rose-100 text-warm-500'}`}>MK</button>
-              <button onClick={() => setCurrency(currency === 'USD' ? 'MKD' : 'USD')} className="px-3 py-1.5 rounded-full text-xs font-bold bg-rose-100 text-warm-500">{currency}</button>
-            </div>
           </div>
         </div>
       )}
