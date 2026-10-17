@@ -14,6 +14,18 @@ FROM nginx:1.27-alpine AS runtime
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
+RUN printf '%s\n' \
+  '#!/bin/sh' \
+  'set -eu' \
+  'cat > /usr/share/nginx/html/config.js <<EOF' \
+  'window.__ENV__ = {' \
+  '  VITE_SUPABASE_URL: "${VITE_SUPABASE_URL:-}",' \
+  '  VITE_SUPABASE_ANON_KEY: "${VITE_SUPABASE_ANON_KEY:-}"' \
+  '};' \
+  'EOF' \
+  > /docker-entrypoint.d/40-runtime-config.sh \
+  && chmod +x /docker-entrypoint.d/40-runtime-config.sh
+
 EXPOSE 80
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
