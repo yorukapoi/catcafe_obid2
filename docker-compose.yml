@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    cpus: 1.0
-    mem_limit: 512m
+    cpus: 0.4            # 400m of the 500m quota
+    mem_limit: 512m      # 512MB of the 1000MB quota
     environment:
       VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
       VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY}
