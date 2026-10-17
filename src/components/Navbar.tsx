@@ -45,7 +45,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             <Cat className="w-6 h-6 text-white" strokeWidth={2.5} />
           </div>
           <span className="font-display font-bold text-lg text-warm-700 hidden sm:block">
-            Whiskers & Whipped Cream
+            Meto's Café
           </span>
         </button>
 

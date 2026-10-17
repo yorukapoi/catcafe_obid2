@@ -35,31 +35,36 @@ export default function Home({ onNavigate }: HomeProps) {
       <section className="relative overflow-hidden bg-gradient-to-b from-rose-50 via-cream-50 to-cream-50 bg-paw-pattern">
         <div className="section-padding py-16 lg:py-24 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left animate-fadeIn">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 text-rose-600 text-sm font-semibold mb-6">
-                <PawPrint className="w-4 h-4" />
-                Now serving purrs & pastries
-              </div>
-              <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-warm-700 leading-tight mb-6 text-balance">
-                Where every cup comes with a{' '}
-                <span className="heading-gradient">purr</span>
-              </h1>
-              <p className="text-warm-500 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-                Sip on artisan coffee, nibble fresh-baked pastries, and cuddle with our adorable
-                resident cats. Some are looking for their forever homes — maybe you'll find your
-                new best friend here.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <button onClick={() => onNavigate('cats')} className="btn-primary group">
-                  {t('Meet Our Cats')}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button onClick={() => onNavigate('menu')} className="btn-ghost">
-                  <Coffee className="w-4 h-4" />
-                  {t('See the Menu')}
-                </button>
-              </div>
-            </div>
+            
+
+<div className="text-center lg:text-left animate-fadeIn">
+  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 text-rose-600 text-sm font-semibold mb-6">
+    <PawPrint className="w-4 h-4" />
+    {t('In loving memory of Meto 🐾')}
+  </div>
+
+  <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-warm-700 leading-tight mb-6 text-balance">
+  {t('Some cats leave pawprints - ')}{' '}
+  <span className="text-[#b54918]">
+    {t('Meto left something more.')}
+  </span>
+</h1>
+
+  <p className="text-warm-500 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+    {t("A café named after Meto, a beloved campus cat who found a special place in students' hearts. Come for the coffee, stay for the cats, and be part of a story that lives on.")}
+  </p>
+
+  <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+    <button onClick={() => onNavigate('cats')} className="btn-primary group">
+      {t('Meet Our Cats')}
+      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+    </button>
+    <button onClick={() => onNavigate('menu')} className="btn-ghost">
+      <Coffee className="w-4 h-4" />
+      {t('See the Menu')}
+    </button>
+  </div>
+</div>
 
             <div className="relative flex justify-center animate-fadeIn">
               <div className="relative">
@@ -67,15 +72,17 @@ export default function Home({ onNavigate }: HomeProps) {
                 <div className="absolute -bottom-6 -right-6 w-20 h-20 rounded-full bg-lavender-200 animate-floatSlow opacity-60" />
                 <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full overflow-hidden shadow-2xl shadow-rose-200 border-8 border-white">
                   <img
-                    src="https://images.pexels.com/photos/37085069/pexels-photo-37085069.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-                    alt="A fluffy cat relaxing in a cozy cat café"
+                    src="/meto.png"
+                    alt="Meto, the beloved campus cat behind Meto's Café"
                     className="w-full h-full object-cover"
                     loading="eager"
                   />
                 </div>
                 <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-full px-6 py-3 shadow-lg flex items-center gap-2 whitespace-nowrap">
-                  <Star className="w-4 h-4 text-warm-400 fill-warm-400" />
-                  <span className="text-sm font-bold text-warm-700">Rated #1 Cat Café</span>
+                  <Heart className="w-4 h-4 text-rose-400 fill-rose-400" />
+<span className="text-sm font-bold text-warm-700">
+  {t('The cat behind our name')}
+</span>
                 </div>
               </div>
             </div>
@@ -92,8 +99,10 @@ export default function Home({ onNavigate }: HomeProps) {
                 <Clock className="w-6 h-6 text-rose-400" />
               </div>
               <div>
-                <p className="font-bold text-warm-700 text-sm">Open Daily</p>
-                <p className="text-warm-400 text-xs">8am – 7pm (Mon–Fri)</p>
+                <p className="font-bold text-warm-700 text-sm">{t('Open Daily')}</p>
+                <p className="text-warm-400 text-xs">
+  {t('8am – 7pm (Mon–Fri)')}
+</p>
               </div>
             </div>
             <div className="flex items-center gap-3 justify-center">
@@ -101,8 +110,8 @@ export default function Home({ onNavigate }: HomeProps) {
                 <MapPin className="w-6 h-6 text-mint-500" />
               </div>
               <div>
-                <p className="font-bold text-warm-700 text-sm">Partizanska 31</p>
-                <p className="text-warm-400 text-xs">Skopje, North Macedonia</p>
+                <p className="font-bold text-warm-700 text-sm">{t('Partizanska 31')}</p>
+                <p className="text-warm-400 text-xs">{t('Skopje, North Macedonia')}</p>
               </div>
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-end">
@@ -110,8 +119,8 @@ export default function Home({ onNavigate }: HomeProps) {
                 <Cat className="w-6 h-6 text-lavender-500" />
               </div>
               <div>
-                <p className="font-bold text-warm-700 text-sm">9 Resident Cats</p>
-                <p className="text-warm-400 text-xs">2 available for adoption</p>
+                <p className="font-bold text-warm-700 text-sm">{t('9 Resident Cats')}</p>
+                <p className="text-warm-400 text-xs">{t('2 available for adoption')}</p>
               </div>
             </div>
           </div>
@@ -122,12 +131,11 @@ export default function Home({ onNavigate }: HomeProps) {
       <section className="section-padding py-16">
         <div className="text-center mb-12">
           <h2 className="font-display font-bold text-3xl sm:text-4xl text-warm-700 mb-3">
-            Meet Our Furry Friends
+            {t('The Real Bosses of the Café')}
           </h2>
           <p className="text-warm-500 max-w-xl mx-auto">
-            Each of our cats has a unique personality and story. Come visit them at the café
-            or learn more about them here.
-          </p>
+  {t('Each of our cats has a unique personality and story. Come visit them at the café or learn more about them here.')}
+</p>
         </div>
 
         {loading ? (
@@ -178,12 +186,11 @@ export default function Home({ onNavigate }: HomeProps) {
         <div className="section-padding">
           <div className="text-center mb-12">
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-warm-700 mb-3">
-              Pawsitively Delicious
+              {t('A Little Coffee, A Lot of Love')}
             </h2>
             <p className="text-warm-500 max-w-xl mx-auto">
-              Freshly baked pastries, artisan coffee, and meow-gical teas — every treat is made
-              with love and a sprinkle of cat magic.
-            </p>
+  {t("Good coffee, delicious treats, and a few curious cats to keep you company. Sometimes, that's all you need.")}
+</p>
           </div>
 
           {loading ? (
@@ -239,12 +246,11 @@ export default function Home({ onNavigate }: HomeProps) {
               <Heart className="w-8 h-8 text-rose-400 fill-rose-400" />
             </div>
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-warm-700 mb-4">
-              Ready to find your purr-fect match?
+              {t('Every Cat Deserves a Home')}
             </h2>
             <p className="text-warm-600 max-w-xl mx-auto mb-8 text-lg">
-              Browse our adoptable cats and fill out an application. Our team will reach out
-              to help you find your new feline family member.
-            </p>
+  {t("They don't ask for much. Just a safe place, a little kindness, and someone to call their own. Maybe that someone is you.")}
+</p>
             <button onClick={() => onNavigate('adopt')} className="btn-primary group text-base px-8 py-4">
               {t('Start Your Adoption Journey')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

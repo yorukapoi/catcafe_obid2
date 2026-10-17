@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,13 +9,19 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
     font-family: 'Nunito', sans-serif;
     background-color: #fffdf9;
     color: #4a3825;
   }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Nunito', sans-serif;
   }
 }
 
@@ -22,39 +29,51 @@
   .btn-pastel {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
   }
+
   .btn-primary {
     @apply btn-pastel bg-rose-400 text-white hover:bg-rose-500 shadow-md shadow-rose-200;
   }
+
   .btn-mint {
     @apply btn-pastel bg-mint-400 text-white hover:bg-mint-500 shadow-md shadow-mint-200;
   }
+
   .btn-lavender {
     @apply btn-pastel bg-lavender-400 text-white hover:bg-lavender-500 shadow-md shadow-lavender-200;
   }
+
   .btn-sky {
     @apply btn-pastel bg-sky-400 text-white hover:bg-sky-500 shadow-md shadow-sky-200;
   }
+
   .btn-ghost {
     @apply btn-pastel bg-white text-rose-500 border-2 border-rose-200 hover:border-rose-300 hover:bg-rose-50;
   }
+
   .btn-outline {
-    @apply btn-pastel bg-transparent text-warm-700 border-2 border-warm-300 hover:bg-warm-50;
+    @apply btn-pastel bg-transparent text-warm-700 border-2 border-warm-300 hover:border-warm-300 hover:bg-warm-50;
   }
+
   .card-pastel {
     @apply bg-white rounded-3xl shadow-sm shadow-rose-100/50 border border-rose-100/40 transition-all duration-300;
   }
+
   .card-pastel-hover {
     @apply card-pastel hover:shadow-xl hover:shadow-rose-100 hover:-translate-y-1;
   }
+
   .input-pastel {
-    @apply w-full px-4 py-3 rounded-2xl border-2 border-rose-100 bg-cream-50 text-warm-700 placeholder:text-warm-300 focus:outline-none focus:border-rose-300 focus:bg-white transition-all duration-200;
+    @apply w-full px-4 py-3 rounded-2xl border-2 border-rose-100 bg-cream-50 text-warm-700 placeholder:text-warm-300 focus:outline-none focus:border-rose-300 focus:bg-white transition-colors duration-200;
   }
+
   .badge {
     @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
   }
+
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
   }
+
   .heading-gradient {
     @apply bg-gradient-to-r from-rose-400 via-lavender-400 to-sky-400 bg-clip-text text-transparent;
   }
@@ -64,17 +83,22 @@
   .text-balance {
     text-wrap: balance;
   }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   .bg-paw-pattern {
     background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffc9d6' fill-opacity='0.15'%3E%3Cellipse cx='40' cy='48' rx='12' ry='10'/%3E%3Ccircle cx='28' cy='32' r='5'/%3E%3Ccircle cx='52' cy='32' r='5'/%3E%3Ccircle cx='22' cy='44' r='4'/%3E%3Ccircle cx='58' cy='44' r='4'/%3E%3C/g%3E%3C/svg%3E");
   }
+
   .bg-paw-mint {
     background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2386efb4' fill-opacity='0.12'%3E%3Cellipse cx='40' cy='48' rx='12' ry='10'/%3E%3Ccircle cx='28' cy='32' r='5'/%3E%3Ccircle cx='52' cy='32' r='5'/%3E%3Ccircle cx='22' cy='44' r='4'/%3E%3Ccircle cx='58' cy='44' r='4'/%3E%3C/g%3E%3C/svg%3E");
   }
 }
+
