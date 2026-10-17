@@ -120,8 +120,15 @@ export default function Adopt({ preselectedCatId, preselectedCatName, onNavigate
 
       const { data } = await supabase.from('cats').select('*').order('sort_order');
 
-      if (data) setCats(data as CatType[]);
-
+if (data) {
+  setCats(data as CatType[]);
+  if (preselectedCatId) {
+    const selected = (data as CatType[]).find((c) => c.id === preselectedCatId);
+    if (selected && selected.status !== 'available' && selected.status !== 'pending') {
+      setForm((prev) => ({ ...prev, selected_cat_id: null, selected_cat_name: '' }));
+    }
+  }
+}
       setLoadingCats(false);
 
     })();
@@ -740,7 +747,9 @@ export default function Adopt({ preselectedCatId, preselectedCatName, onNavigate
 
                   <div className="grid sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto scrollbar-hide pr-1">
 
-                    {cats.map((cat) => {
+                    {cats
+  .filter((cat) => cat.status === 'available' || cat.status === 'pending')
+  .map((cat) => {
 
                       const isSelected = form.selected_cat_id === cat.id;
 
