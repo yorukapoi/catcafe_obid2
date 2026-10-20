@@ -1,17 +1,31 @@
+```html
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cat Café Website</title>
-    <script src="/config.js"></script> 
-    <meta property="og:image" content="https://bolt.new/static/og_default.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png" />
+
+    <title>Cat Café</title>
+    <meta
+      name="description"
+      content="Meet our cats, explore our menu, and discover adoption opportunities."
+    />
+
+    <meta property="og:title" content="Cat Café" />
+    <meta
+      property="og:description"
+      content="Meet our cats, explore our menu, and discover adoption opportunities."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary" />
+
+    <script src="/config.js"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+```
